@@ -79,6 +79,50 @@ task-manager-pro
 
 ---
 
+# 🌳 Git Branching Strategy
+
+This project follows a **trunk-based development** workflow with protected branches and PR enforcement to ensure code quality and collaboration.
+
+### Branches
+
+- **`main`** - Production-ready code. Protected branch requiring PR approval.
+- **`develop`** - Integration branch for ongoing development. Protected branch requiring PR approval.
+- **`feature/*`** - Feature branches for new development (e.g., `feature/add-user-auth`).
+
+### Workflow
+
+1. **Create feature branches** from `develop`:
+   ```bash
+   git checkout develop
+   git pull origin develop
+   git checkout -b feature/your-feature-name
+   ```
+
+2. **Develop and commit** changes on your feature branch.
+
+3. **Push and create PR** to merge into `develop`:
+   - PRs require at least 1 approval.
+   - CI must pass.
+   - No direct pushes to `main` or `develop`.
+
+4. **Merge to main** via PR from `develop` when ready for release.
+
+### Branch Protection Rules
+
+- **main** and **develop** are protected:
+  - Require PRs for merging.
+  - Require status checks (CI) to pass.
+  - Require at least 1 code review approval.
+  - No force pushes.
+  - No deletions.
+
+### CI/CD
+
+- Automated tests and builds run on PRs to `main` and `develop`.
+- Merges are blocked if CI fails.
+
+---
+
 # 🗄️ Database Schema
 
 Create database:
