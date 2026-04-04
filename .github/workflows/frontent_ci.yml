@@ -2,9 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
-  pull_request:
-    branches: [ main, develop ]
+    branches: [ feature/* ]
 
 jobs:
   build:
@@ -15,12 +13,16 @@ jobs:
         node-version: [18.x, 20.x]
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository    
+      uses: actions/checkout@v4
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build
-    - run: npm test --if-present
+    - name: Install dependencies and build
+      run: |
+        npm ci
+        npm run build
+    - name: Run tests
+      run: npm test --if-present
