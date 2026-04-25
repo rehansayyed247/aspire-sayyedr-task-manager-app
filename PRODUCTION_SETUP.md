@@ -1,4 +1,4 @@
-# Task Manager App - Production Grade Implementation
+# Task Manager App - Production Grade Implementation for the app
 
 A secure, production-ready Express.js + TypeScript task management API with PostgreSQL backend.
 
